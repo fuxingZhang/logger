@@ -40,6 +40,8 @@ logger.warn('consoleLogger warn');
 logger.error('consoleLogger error');
 ```  
 
+![consoleLogger](./screenshots/consoleLogger.png)  
+
 ### file logger  
 
 ```js
@@ -54,6 +56,8 @@ logger.info('fileLogger info');
 logger.warn('fileLogger warn');
 logger.error('fileLogger error');
 ```  
+
+![fileLogger](./screenshots/fileLogger.png) 
 
 ### file logger cut by day
 
@@ -70,7 +74,10 @@ logger.info('fileLogger info');
 logger.warn('fileLogger warn');
 logger.error('fileLogger error');
 ```  
-See `screenshots` folder
+
+![byDay](./screenshots/fileLogger.byDay.png)  
+
+More screenshots in the `screenshots` folder.
 
 ## Test
 
