@@ -1,0 +1,29 @@
+{
+  "name": "@zhangfuxing/logger",
+  "version": "1.0.0",
+  "description": "logger for nodejs",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node ./test/consoleLogger.test.js & node ./test/fileLogger.test.js & node ./test/fileLogger.byDay.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fuxingZhang/logger.git"
+  },
+  "keywords": [
+    "nodejs",
+    "logger"
+  ],
+  "author": "Zhang Fu Xing <502545703@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fuxingZhang/logger/issues"
+  },
+  "homepage": "https://github.com/fuxingZhang/logger#readme",
+  "dependencies": {
+    "@zhangfuxing/colors": "^1.2.1"
+  }
+}
