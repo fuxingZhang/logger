@@ -10,7 +10,6 @@ let infoPath, warnPath, errorPath;
 function write(path, chunk) {
   if (map.has(path)) return map.get(path).write(chunk);
 
-  // Only byDay is true and day change, the code can be executed here
   if (path.includes('info')) {
     if (infoPath) map.get(infoPath).end();
     infoPath = path;
