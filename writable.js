@@ -32,7 +32,7 @@ class Writable {
    * @param {String} chunk data to write
    */
   write(chunk) {
-    this.#stream.write(`${chunk}\r\n`);
+    this.#stream.write(`${chunk}`);
   }
 
   /**
