@@ -4,6 +4,7 @@ const fs = require('fs');
 const colors = require('@zhangfuxing/colors/fn');
 const path = require('path');
 const write = require('./write');
+const stdout = require('./stdout');
 
 class Logger {
   /**
@@ -33,17 +34,17 @@ class Logger {
   static init(dir) {
     try {
       fs.accessSync(dir);
-      console.log(`${Logger.getInfo()} Log folder exists`);
+      stdout(`${Logger.getInfo()} Log folder exists`);
     } catch (error) {
-      console.warn(`${Logger.getWarn()} Log folder does not exist`);
+      stdout(`${Logger.getWarn()} Log folder does not exist`);
       try {
         fs.mkdirSync(dir, { recursive: true });
-        console.log(`${Logger.getInfo()} Log folder create success`);
+        stdout(`${Logger.getInfo()} Log folder create success`);
       } catch (error) {
-        console.error(`${Logger.getError()} Log folder create failed`);
+        stdout(`${Logger.getError()} Log folder create failed`);
       }
     }
-    console.log(`${Logger.getInfo()} Log folder: '${dir}'`);
+    stdout(`${Logger.getInfo()} Log folder: '${dir}'`);
   }
 
   /**
@@ -52,7 +53,7 @@ class Logger {
    * @param {String} message 
    */
   async info(message) {
-    console.log(`${Logger.getInfo()} ${message}`);
+    stdout(`${Logger.getInfo()} ${message}`);
 
     if (this.logToFile) Logger.write({
       dir: this.dir,
@@ -68,7 +69,7 @@ class Logger {
    * @param {String} message 
    */
   async warn(message) {
-    console.warn(`${Logger.getWarn()} ${message}`);
+    stdout(`${Logger.getWarn()} ${message}`);
 
     if (this.logToFile) Logger.write({
       dir: this.dir,
@@ -84,7 +85,7 @@ class Logger {
    * @param {String} message 
    */
   async error(message) {
-    console.error(`${Logger.getError()} ${message}`);
+    stdout(`${Logger.getError()} ${message}`);
 
     if (this.logToFile) Logger.write({
       dir: this.dir,
