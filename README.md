@@ -7,6 +7,8 @@ logger for nodejs
 $ npm i @zhangfuxing/logger
 ```  
 
+Node.js 12+ required (Because of use Class private fields)
+
 ## options
 ### constructor  
 * `logToFile` optional, Whether to write to a file
