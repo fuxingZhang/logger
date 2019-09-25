@@ -1,12 +1,9 @@
 'use strict'
 
-/**
- * Created by zfx on 2019/09/24
- */
 const fs = require('fs');
-const fsPromises = fs.promises;
 const colors = require('@zhangfuxing/colors/fn');
 const path = require('path');
+const write = require('./write');
 
 class Logger {
   /**
@@ -107,7 +104,7 @@ class Logger {
     const date = new Date().toLocaleDateString();
     const filename = byDay ? `${date}_${type}` : type;
 
-    await fsPromises.appendFile(`${dir}/${filename}.log`, `${Logger.getNow()} ${message}\r\n`);
+    await write(`${dir}/${filename}.log`, `${Logger.getNow()} ${message}\r\n`);
   }
 
   static getInfo() {
