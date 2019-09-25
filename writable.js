@@ -13,7 +13,7 @@ class Writable {
     this.#stream = Writable.createStream(path);
     
     this.#stream.once('error', err => {
-      console.error('this.#stream error: ', err);
+      console.error(`${path} stream error`, err);
       this.#stream.end();
       this.#stream = Writable.createStream(path);
     });
