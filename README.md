@@ -15,7 +15,7 @@ Node.js 12+ required (Because of use Class private fields)
   - default: false
 * `dir` optional, log folder location
   - default: './log'
-* `byDay` optional, Whether to cut by day
+* `byDay` optional, Whether rotate logs by day
   - default: false
 
 ### info  

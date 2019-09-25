@@ -11,7 +11,7 @@ declare class Logger {
    * Options:
    *   - `logToFile` optional, Whether to write to a file, default:false
    *   - `dir` optional, log folder location, default: './log'
-   *   - `byDay` optional, Whether to cut by day, default: false
+   *   - `byDay` optional, Whether rotate logs by day, default: false
    */
   constructor(options: Options);
 

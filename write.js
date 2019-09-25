@@ -14,14 +14,14 @@ function write(path, chunk) {
   if (path.includes('info')) {
     if (infoPath) map.get(infoPath).end();
     infoPath = path;
-  }
-  if (path.includes('warn')) {
+  } else if (path.includes('warn')) {
     if (warnPath) map.get(warnPath).end();
     warnPath = path;
-  }
-  if (path.includes('error')) {
+  } else if (path.includes('error')) {
     if (errorPath) map.get(errorPath).end();
     errorPath = path;
+  } else {
+    throw new Error('Unexpected file path');
   }
 
   const writable = new Writable(path);

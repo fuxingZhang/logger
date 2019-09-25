@@ -42,6 +42,7 @@ class Writable {
     if(this.#stream) {
       this.#stream.removeAllListeners('error');
       this.#stream.end();
+      // console.log(`${this.#stream.path} stream was closed`);
       this.#stream = void 0;
     }
   }

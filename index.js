@@ -11,7 +11,7 @@ class Logger {
    * 
    * @param {Boolean} logToFile optional, Whether to write to a file, default:false
    * @param {String} dir optional, log folder location, default: './log'
-   * @param {Boolean} byDay optional, Whether to cut by day, default: false
+   * @param {Boolean} byDay optional, Whether rotate logs by day, default: false
    */
   constructor({ logToFile = false, dir = './log', byDay = false } = {}) {
     this.logToFile = logToFile;
