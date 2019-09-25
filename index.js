@@ -13,7 +13,7 @@ class Logger {
    * @param {String} dir optional, log folder location, default: './log'
    * @param {Boolean} byDay optional, Whether to cut by day, default: false
    */
-  constructor({ logToFile = false, dir = './log', byDay = false }) {
+  constructor({ logToFile = false, dir = './log', byDay = false } = {}) {
     this.logToFile = logToFile;
     this.dir = path.resolve(dir);
     this.byDay = byDay;

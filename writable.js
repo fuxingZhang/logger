@@ -39,7 +39,7 @@ class Writable {
    * @public
    */
   end() {
-    if(this.#this.stream) {
+    if(this.#stream) {
       this.#stream.removeAllListeners('error');
       this.#stream.end();
       this.#stream = void 0;
