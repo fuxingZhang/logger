@@ -13,7 +13,7 @@ class Writable {
     this.#stream = Writable.createStream(path);
     
     this.#stream.once('error', err => {
-      console.error(err);
+      console.error('this.#stream error: ', err);
       this.#stream.end();
       this.#stream = Writable.createStream(path);
     });
@@ -33,6 +33,17 @@ class Writable {
    */
   write(chunk) {
     this.#stream.write(`${chunk}\r\n`);
+  }
+
+  /**
+   * @public
+   */
+  end() {
+    if(this.#this.stream) {
+      this.#stream.removeAllListeners('error');
+      this.#stream.end();
+      this.#stream = void 0;
+    }
   }
 }
 
