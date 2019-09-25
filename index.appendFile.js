@@ -5,6 +5,9 @@ const fsPromises = fs.promises;
 const colors = require('@zhangfuxing/colors/fn');
 const path = require('path');
 
+/**
+ * @deprecated
+ */
 class Logger {
   /**
    * @constructor
