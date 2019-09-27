@@ -4,19 +4,21 @@ const fs = require('fs');
 const colors = require('@zhangfuxing/colors/fn');
 const path = require('path');
 const write = require('./write');
-const stdout = require('./stdout');
+let stdout = require('./stdout');
 const eol = require('os').EOL;
+const noop = () => void 0;
 
 class Logger {
   /**
-   * When isTTY is true, logger writes to STDOUT. Otherwise it will not write to STDOUT
-   * Writing to the terminal has nothing to do with whether or not to write to the file.
+   * When isTTY is false, logger will not write to terminal.
    * 
    * @constructor
    * @param {String} dir optional, if the folder path is given, it will log to file
    * @param {Boolean} rotate optional, Whether rotate logs by day, default: false
+   * @param {Boolean} disableConsole optional, disable write to terminal, default: false
    */
-  constructor({ dir, rotate = false } = {}) {
+  constructor({ dir, rotate = false, disableConsole = false } = {}) {
+    if (disableConsole === true) stdout = noop;
     this.rotate = rotate;
     if (typeof rotate !== 'boolean') throw new TypeError('rotate must be boolean');
     if (dir !== undefined) {
@@ -32,19 +34,14 @@ class Logger {
    * @param {String} dir 
    */
   static init(dir) {
+    if (fs.existsSync(dir)) return;
+    stdout(`${Logger.getWarn()} Log folder does not exist`);
     try {
-      fs.accessSync(dir);
-      stdout(`${Logger.getInfo()} Log folder exists`);
+      fs.mkdirSync(dir, { recursive: true });
+      stdout(`${Logger.getInfo()} Log folder create success`);
     } catch (error) {
-      stdout(`${Logger.getWarn()} Log folder does not exist`);
-      try {
-        fs.mkdirSync(dir, { recursive: true });
-        stdout(`${Logger.getInfo()} Log folder create success`);
-      } catch (error) {
-        stdout(`${Logger.getError()} Log folder create failed`);
-      }
+      stdout(`${Logger.getError()} Log folder create failed`);
     }
-    stdout(`${Logger.getInfo()} Log folder: '${dir}'`);
   }
 
   /**
@@ -109,6 +106,17 @@ class Logger {
     const chunk = `${Logger.getNow()} ${message}${eol}`;
 
     write(path, chunk);
+  }
+
+  /**
+   * disable console and write to file for unit testing
+   * @public
+   */
+  disable() {
+    stdout = noop; // close console in init
+    this.info = noop;
+    this.warn = noop;
+    this.error = noop;
   }
 
   static getInfo() {
