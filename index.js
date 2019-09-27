@@ -52,7 +52,7 @@ class Logger {
    * 
    * @param {String} message 
    */
-  async info(message) {
+  info(message) {
     stdout(`${Logger.getInfo()} ${message}`);
 
     if (this.dir !== undefined) Logger.write({
@@ -68,7 +68,7 @@ class Logger {
    * 
    * @param {String} message 
    */
-  async warn(message) {
+  warn(message) {
     stdout(`${Logger.getWarn()} ${message}`);
 
     if (this.dir !== undefined) Logger.write({
@@ -84,7 +84,7 @@ class Logger {
    * 
    * @param {String} message 
    */
-  async error(message) {
+  error(message) {
     stdout(`${Logger.getError()} ${message}`);
 
     if (this.dir !== undefined) Logger.write({
@@ -102,13 +102,13 @@ class Logger {
    * @param {String} message 
    * @param {Boolean} rotate 
    */
-  static async write({ dir, type, message, rotate }) {
+  static write({ dir, type, message, rotate }) {
     const date = Logger.getDate();
     const filename = rotate ? `${date}_${type}` : type;
     const path = `${dir}/${filename}.log`;
     const chunk = `${Logger.getNow()} ${message}${eol}`;
 
-    await write(path, chunk);
+    write(path, chunk);
   }
 
   static getInfo() {
