@@ -8,12 +8,12 @@ export interface Options {
 
 declare class Logger {
   /**
-   * When isTTY is true, logger writes to STDOUT. Otherwise it will not write to STDOUT
-   * Writing to the terminal has nothing to do with whether or not to write to the file.
+   * When isTTY is false, logger will not write to terminal.
    * 
    * Options:
    *   - `dir`  optional, if the folder path is given, it will log to file
    *   - `rotate` optional, Whether rotate logs by day, default: false
+   *   - `disableConsole` optional, disable write to terminal, default: false
    */
   constructor(option?: Options);
 
@@ -37,6 +37,11 @@ declare class Logger {
    *  `message` The message to write  
    */
   error(message: string): void;
+
+  /**
+   * disable write to terminal and file for unit testing
+   */
+  disable(): void;
 }
 
 export = Logger
