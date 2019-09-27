@@ -55,7 +55,7 @@ class Logger {
   async info(message) {
     stdout(`${Logger.getInfo()} ${message}`);
 
-    if (this.logToFile) Logger.write({
+    if (this.dir !== undefined) Logger.write({
       dir: this.dir,
       type: 'info',
       message,
@@ -71,7 +71,7 @@ class Logger {
   async warn(message) {
     stdout(`${Logger.getWarn()} ${message}`);
 
-    if (this.logToFile) Logger.write({
+    if (this.dir !== undefined) Logger.write({
       dir: this.dir,
       type: 'warn',
       message,
@@ -87,7 +87,7 @@ class Logger {
   async error(message) {
     stdout(`${Logger.getError()} ${message}`);
 
-    if (this.logToFile) Logger.write({
+    if (this.dir !== undefined) Logger.write({
       dir: this.dir,
       type: 'error',
       message,
