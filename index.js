@@ -17,10 +17,9 @@ class Logger {
    * @param {Boolean} rotate optional, Whether rotate logs by day, default: false
    * @param {Boolean} disableConsole optional, disable write to terminal, default: false
    */
-  constructor({ dir, rotate = false, disableConsole = false } = {}) {
+  constructor({ dir, rotate, disableConsole } = {}) {
     if (disableConsole === true) stdout = noop;
     this.rotate = rotate;
-    if (typeof rotate !== 'boolean') throw new TypeError('rotate must be boolean');
     if (dir !== undefined) {
       this.dir = path.resolve(dir);
       Logger.init(this.dir);
@@ -101,7 +100,7 @@ class Logger {
    */
   static write({ dir, type, message, rotate }) {
     const date = Logger.getDate();
-    const filename = rotate ? `${date}_${type}` : type;
+    const filename = rotate === true ? `${date}_${type}` : type;
     const path = `${dir}/${filename}.log`;
     const chunk = `${Logger.getNow()} ${message}${eol}`;
 
