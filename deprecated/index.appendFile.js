@@ -16,7 +16,7 @@ class Logger {
    * When isTTY is false, logger will not write to terminal.
    * 
    * @constructor
-   * @param {String} dir optional, if the folder path is given, it will log to file
+   * @param {String} dir optional, Log folder path, if it is given, it will log to file
    * @param {Boolean} rotate optional, Whether rotate logs by day, default: false
    * @param {Boolean} disableConsole optional, disable write to terminal, default: false
    */
