@@ -4,25 +4,26 @@ const fs = require('fs');
 const fsPromises = fs.promises;
 const colors = require('@zhangfuxing/colors/fn');
 const path = require('path');
+const stdout = require('../stdout');
+const eol = require('os').EOL;
 
 /**
  * @deprecated
  */
 class Logger {
   /**
-   * @constructor
+   * When isTTY is true, logger writes to STDOUT. Otherwise it will not write to STDOUT
+   * Writing to the terminal has nothing to do with whether or not to write to the file.
    * 
-   * @param {Boolean} logToFile optional, Whether to write to a file, default:false
-   * @param {String} dir optional, log folder location, default: './log'
-   * @param {Boolean} byDay optional, Whether to cut by day, default: false
+   * @constructor
+   * @param {String} dir optional, if the folder path is given, it will log to file
+   * @param {Boolean} rotate optional, Whether rotate logs by day, default: false
    */
-  constructor({ logToFile = false, dir = './log', byDay = false }) {
-    this.logToFile = logToFile;
-    this.dir = path.resolve(dir);
-    this.byDay = byDay;
-    if (typeof logToFile !== 'boolean') throw new TypeError('logToFile must be boolean');
-    if (typeof byDay !== 'boolean') throw new TypeError('byDay must be boolean');
-    if (logToFile) {
+  constructor({ dir, rotate = false } = {}) {
+    if (typeof rotate !== 'boolean') throw new TypeError('rotate must be boolean');
+    this.rotate = rotate;
+    if (dir !== undefined) {
+      this.dir = path.resolve(dir);
       Logger.init(this.dir);
     }
   }
@@ -36,17 +37,17 @@ class Logger {
   static init(dir) {
     try {
       fs.accessSync(dir);
-      console.log(`${Logger.getInfo()} Log folder exists`);
+      stdout(`${Logger.getInfo()} Log folder exists`);
     } catch (error) {
-      console.warn(`${Logger.getWarn()} Log folder does not exist`);
+      stdout(`${Logger.getWarn()} Log folder does not exist`);
       try {
         fs.mkdirSync(dir, { recursive: true });
-        console.log(`${Logger.getInfo()} Log folder create success`);
+        stdout(`${Logger.getInfo()} Log folder create success`);
       } catch (error) {
-        console.error(`${Logger.getError()} Log folder create failed`);
+        stdout(`${Logger.getError()} Log folder create failed`);
       }
     }
-    console.log(`${Logger.getInfo()} Log folder: '${dir}'`);
+    stdout(`${Logger.getInfo()} Log folder: '${dir}'`);
   }
 
   /**
@@ -55,13 +56,13 @@ class Logger {
    * @param {String} message 
    */
   async info(message) {
-    console.log(`${Logger.getInfo()} ${message}`);
+    stdout(`${Logger.getInfo()} ${message}`);
 
-    if (this.logToFile) Logger.write({
+    if (this.dir !== undefined) Logger.write({
       dir: this.dir,
       type: 'info',
       message,
-      byDay: this.byDay
+      rotate: this.rotate
     });
   }
 
@@ -71,13 +72,13 @@ class Logger {
    * @param {String} message 
    */
   async warn(message) {
-    console.warn(`${Logger.getWarn()} ${message}`);
+    stdout(`${Logger.getWarn()} ${message}`);
 
-    if (this.logToFile) Logger.write({
+    if (this.dir !== undefined) Logger.write({
       dir: this.dir,
       type: 'warn',
       message,
-      byDay: this.byDay
+      rotate: this.rotate
     });
   }
 
@@ -87,13 +88,13 @@ class Logger {
    * @param {String} message 
    */
   async error(message) {
-    console.error(`${Logger.getError()} ${message}`);
+    stdout(`${Logger.getError()} ${message}`);
 
-    if (this.logToFile) Logger.write({
+    if (this.dir !== undefined) Logger.write({
       dir: this.dir,
       type: 'error',
       message,
-      byDay: this.byDay
+      rotate: this.rotate
     });
   }
 
@@ -102,12 +103,15 @@ class Logger {
    * @param {String} dir 
    * @param {String} type 
    * @param {String} message 
+   * @param {Boolean} rotate 
    */
-  static async write({ dir, type, message, byDay }) {
-    const date = new Date().toLocaleDateString();
-    const filename = byDay ? `${date}_${type}` : type;
+  static async write({ dir, type, message, rotate }) {
+    const date = Logger.getDate();
+    const filename = rotate ? `${date}_${type}` : type;
+    const path = `${dir}/${filename}.log`;
+    const data = `${Logger.getNow()} ${message}${eol}`;
 
-    await fsPromises.appendFile(`${dir}/${filename}.log`, `${Logger.getNow()} ${message}\r\n`);
+    await fsPromises.appendFile(path, data);
   }
 
   static getInfo() {
@@ -124,6 +128,10 @@ class Logger {
 
   static getNow() {
     return new Date().toLocaleString('zh', { hour12: false });
+  }
+
+  static getDate() {
+    return new Date().toLocaleDateString();
   }
 }
 
