@@ -1,17 +1,15 @@
 'use strict'
 
 const isTTY = process.stdout.isTTY;
-const eol = require('os').EOL;  // \n on POSIX, \r\n on Windows
+const eol = require('os').EOL;  
 
 /**
  * print to terminal
  * 
  * @param {String} chunk data to write
  */
-function stdout(chunk) {
-  process.stdout.write(`${chunk}${eol}`);
-}
+const stdout = chunk => process.stdout.write(`${chunk}${eol}`);
 
-function Null() { }
+const noop = () => void 0;
 
-module.exports = isTTY ? stdout : Null
+module.exports = isTTY ? stdout : noop
