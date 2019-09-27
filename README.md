@@ -10,9 +10,7 @@ $ npm i @zhangfuxing/logger
 Node.js 12+ required (Because of use Class private fields)
 
 ## options
-
-When isTTY is true, logger writes to STDOUT. Otherwise it will not write to STDOUT
-Writing to the terminal has nothing to do with whether or not to write to the file.
+When isTTY is false, logger will not write to terminal.
 
 ### constructor  
 * `dir`  optional, if the folder path is given, it will log to file
@@ -31,7 +29,7 @@ Writing to the terminal has nothing to do with whether or not to write to the fi
 * `message` The message to write  
 
 ### disable 
-disable console and write to file for unit testing  
+disable write to terminal and file for unit testing  
  
 ## Useage  
 
@@ -100,7 +98,7 @@ logger.error('fileLogger error');
 More screenshots in the `screenshots` folder.
 
 ## disable for unit testing  
-disable console and write to file for unit testing  
+disable write to terminal and file for unit testing 
 
 consoleLogger.js
 ```js
