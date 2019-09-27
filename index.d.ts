@@ -12,7 +12,7 @@ declare class Logger {
    * When isTTY is false, logger will not write to terminal.
    * 
    * Options:
-   *   - `dir`  optional, if the folder path is given, it will log to file
+   *   - `dir` optional, Log folder path, if it is given, it will log to file
    *   - `rotate` optional, Whether rotate logs by day, default: false
    *   - `disableConsole` optional, disable write to terminal, default: false
    */
