@@ -18,6 +18,8 @@ Writing to the terminal has nothing to do with whether or not to write to the fi
 * `dir`  optional, if the folder path is given, it will log to file
 * `rotate` optional, Whether rotate logs by day
   - default: false
+* `disableConsole` optional, disable write to terminal
+  - default: false
 
 ### info  
 * `message` The message to write  
@@ -28,7 +30,9 @@ Writing to the terminal has nothing to do with whether or not to write to the fi
 ### error
 * `message` The message to write  
 
-
+### disable 
+disable console and write to file for unit testing  
+ 
 ## Useage  
 
 ### console logger  
@@ -45,7 +49,7 @@ logger.error('consoleLogger error');
 
 ![consoleLogger](./screenshots/consoleLogger.png)  
 
-### file logger  
+### file and console logger  
 
 ```js
 const Logger = require('@zhangfuxing/logger');
@@ -60,6 +64,21 @@ logger.error('fileLogger error');
 ```  
 
 ![fileLogger](./screenshots/fileLogger.png) 
+
+### file logger only
+
+```js
+const Logger = require('@zhangfuxing/logger');
+
+const logger = new Logger({
+  dir: './log',
+  disableConsole: true
+});
+
+logger.info('fileLogger info');
+logger.warn('fileLogger warn');
+logger.error('fileLogger error');
+```  
 
 ### file logger cut by day
 
@@ -79,6 +98,38 @@ logger.error('fileLogger error');
 ![byDay](./screenshots/fileLogger.byDay.png)  
 
 More screenshots in the `screenshots` folder.
+
+## disable for unit testing  
+disable console and write to file for unit testing  
+
+consoleLogger.js
+```js
+const Logger = require('@zhangfuxing/logger');
+
+const logger = new Logger();
+
+module.exports = logger
+```
+
+fileLogger.js
+```js
+const Logger = require('@zhangfuxing/logger');
+
+const logger = new Logger({
+  dir: './log'
+});
+
+module.exports = logger
+```
+
+xx.test.js
+```js
+const consoleLogger= require('xx/consoleLogger');
+const fileLogger= require('xx/fileLogger');
+
+consoleLogger.disable();
+fileLogger.disable();
+```
 
 ## Test
 
