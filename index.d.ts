@@ -16,7 +16,7 @@ declare class Logger {
    *   - `rotate` optional, Whether rotate logs by day, default: false
    *   - `disableConsole` optional, disable write to terminal, default: false
    */
-  constructor(option?: Options);
+  constructor(options?: Options);
 
   /**
    * print info message 
