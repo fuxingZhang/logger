@@ -3,9 +3,7 @@
 const Logger = require('../index');
 
 const logger = new Logger({
-  logToFile: true,
-  dir: './log',
-  byDay: false
+  dir: './log'
 });
 
 logger.info('fileLogger info');
