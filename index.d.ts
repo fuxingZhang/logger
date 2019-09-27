@@ -1,19 +1,21 @@
 // Type definitions
+/// <reference types="node" />
 
-interface Options {
-  logToFile?: boolean;
+export interface Options {
   dir?: string;
-  byDay?: boolean;
+  rotate?: boolean;
 }
 
 declare class Logger {
   /**
+   * When isTTY is true, logger writes to STDOUT. Otherwise it will not write to STDOUT
+   * Writing to the terminal has nothing to do with whether or not to write to the file.
+   * 
    * Options:
-   *   - `logToFile` optional, Whether to write to a file, default:false
-   *   - `dir` optional, log folder location, default: './log'
-   *   - `byDay` optional, Whether rotate logs by day, default: false
+   *   - `dir`  optional, if the folder path is given, it will log to file
+   *   - `rotate` optional, Whether rotate logs by day, default: false
    */
-  constructor(options: Options);
+  constructor(option?: Options);
 
   /**
    * print info message 
