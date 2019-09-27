@@ -4,6 +4,7 @@
 export interface Options {
   dir?: string;
   rotate?: boolean;
+  disableConsole?: boolean;
 }
 
 declare class Logger {
