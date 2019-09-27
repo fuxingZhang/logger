@@ -1,3 +1,5 @@
+'use strict'
+
 const isTTY = process.stdout.isTTY;
 const eol = require('os').EOL;  // \n on POSIX, \r\n on Windows
 

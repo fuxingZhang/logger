@@ -1,3 +1,5 @@
+'use strict'
+
 const Writable = require('./writable');
 
 const map = new Map();
