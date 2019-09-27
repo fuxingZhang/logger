@@ -13,8 +13,8 @@ Node.js 12+ required (Because of use Class private fields)
 When isTTY is false, logger will not write to terminal.
 
 ### constructor  
-* `dir`  optional, if the folder path is given, it will log to file
-* `rotate` optional, Whether rotate logs by day
+* `dir` optional, Log folder path, if it is given, it will log to file
+* `rotate` optional, Whether cut logs by day
   - default: false
 * `disableConsole` optional, disable write to terminal
   - default: false
@@ -93,7 +93,7 @@ logger.warn('fileLogger warn');
 logger.error('fileLogger error');
 ```  
 
-![byDay](./screenshots/fileLogger.byDay.png)  
+![byDay](./screenshots/fileLogger.roate.png)  
 
 More screenshots in the `screenshots` folder.
 
@@ -134,3 +134,5 @@ fileLogger.disable();
 ```sh
 $ npm test
 ```  
+
+More test file in the `test` folder.
