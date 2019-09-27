@@ -10,12 +10,13 @@ $ npm i @zhangfuxing/logger
 Node.js 12+ required (Because of use Class private fields)
 
 ## options
+
+When isTTY is true, logger writes to STDOUT. Otherwise it will not write to STDOUT
+Writing to the terminal has nothing to do with whether or not to write to the file.
+
 ### constructor  
-* `logToFile` optional, Whether to write to a file
-  - default: false
-* `dir` optional, log folder location
-  - default: './log'
-* `byDay` optional, Whether rotate logs by day
+* `dir`  optional, if the folder path is given, it will log to file
+* `rotate` optional, Whether rotate logs by day
   - default: false
 
 ### info  
@@ -50,7 +51,6 @@ logger.error('consoleLogger error');
 const Logger = require('@zhangfuxing/logger');
 
 const logger = new Logger({
-  logToFile: true,
   dir: './log'
 });
 
@@ -67,9 +67,8 @@ logger.error('fileLogger error');
 const Logger = require('@zhangfuxing/logger');
 
 const logger = new Logger({
-  logToFile: true,
   dir: './log',
-  byDay: true 
+  rotate: true 
 });
 
 logger.info('fileLogger info');
