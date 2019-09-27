@@ -109,7 +109,7 @@ class Logger {
   }
 
   /**
-   * disable console and write to file for unit testing
+   * disable write to terminal and file for unit testing
    * @public
    */
   disable() {
