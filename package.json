@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "node ./test/consoleLogger.test.js & node ./test/fileLogger.test.js & node ./test/fileLogger.byDay.test.js"
+    "test": "node ./test/consoleLogger.test.js & node ./test/fileLogger.test.js & node ./test/fileLogger.rotate.test.js"
   },
   "repository": {
     "type": "git",
