@@ -49,9 +49,9 @@ const Logger = require('@zhangfuxing/logger');
 
 const logger = new Logger();
 
-logger.info('consoleLogger info');
-logger.warn('consoleLogger warn');
-logger.error('consoleLogger error');
+logger.info('consoleLogger info', { name: 'zfx' });
+logger.warn('consoleLogger warn', 1, 'any');
+logger.error('consoleLogger error', new Error('test'));
 ```  
 
 ![consoleLogger](./screenshots/consoleLogger.png)  
@@ -65,9 +65,9 @@ const logger = new Logger({
   dir: './log'
 });
 
-logger.info('fileLogger info');
-logger.warn('fileLogger warn');
-logger.error('fileLogger error');
+logger.info('fileLogger info', 'any', { name: 'zfx' });
+logger.warn('fileLogger warn', 'any', 'any');
+logger.error('fileLogger error', 'any', new Error('test'), 'any');
 ```  
 
 ![fileLogger](./screenshots/fileLogger.png) 
@@ -82,9 +82,9 @@ const logger = new Logger({
   disableConsole: true
 });
 
-logger.info('fileLogger info');
-logger.warn('fileLogger warn');
-logger.error('fileLogger error');
+logger.info('fileLogger info', 'any', { name: 'zfx' });
+logger.warn('fileLogger warn', 'any', 'any');
+logger.error('fileLogger error', 'any', new Error('test'), 'any');
 ```  
 
 ### file logger cut by day
@@ -97,9 +97,9 @@ const logger = new Logger({
   rotate: true 
 });
 
-logger.info('fileLogger info');
-logger.warn('fileLogger warn');
-logger.error('fileLogger error');
+logger.info('fileLogger info', 'any', { name: 'zfx' });
+logger.warn('fileLogger warn', 'any', 'any');
+logger.error('fileLogger error', 'any', new Error('test'), 'any');
 ```  
 
 ![byDay](./screenshots/fileLogger.roate.png)  
