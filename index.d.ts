@@ -1,7 +1,6 @@
 // Type definitions
-/// <reference types="node" />
 
-export interface Options {
+interface Options {
   dir?: string;
   rotate?: boolean;
   disableConsole?: boolean;
