@@ -46,9 +46,10 @@ class Logger {
   /**
    * Print info message
    * 
-   * @param {String} message 
+   * @param {...*} args 
    */
-  info(message) {
+  info(...args) {
+    const message = Logger.format(args);
     stdout(`${Logger.getInfo()} ${message}`);
 
     if (this.dir !== undefined) Logger.write({
@@ -62,9 +63,10 @@ class Logger {
   /**
    * Print warn message
    * 
-   * @param {String} message 
+   * @param {...*} args 
    */
-  warn(message) {
+  warn(...args) {
+    const message = Logger.format(args);
     stdout(`${Logger.getWarn()} ${message}`);
 
     if (this.dir !== undefined) Logger.write({
@@ -78,9 +80,10 @@ class Logger {
   /**
    * Print error message
    * 
-   * @param {String} message 
+   * @param {...*} args 
    */
-  error(message) {
+  error(...args) {
+    const message = Logger.format(args);
     stdout(`${Logger.getError()} ${message}`);
 
     if (this.dir !== undefined) Logger.write({
@@ -116,6 +119,16 @@ class Logger {
     this.info = noop;
     this.warn = noop;
     this.error = noop;
+  }
+
+  static format(args) {
+    args = args.map(arg => {
+      if(arg instanceof Error) return arg.message;
+      if(Object.prototype.toString.call(arg) === '[Object Object]') return JSON.stringify(arg, null, 2);
+      return arg;
+    });
+
+    return args.join(' ');
   }
 
   static getInfo() {

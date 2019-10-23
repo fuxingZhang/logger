@@ -20,13 +20,22 @@ When isTTY is false, logger will not write to terminal.
   - default: false
 
 ### info  
-* `message` The message to write  
+* `args` The message to write  
+```ts  
+info(...args: any[]): void;
+``` 
 
 ### warn  
-* `message` The message to write  
+* `args` The message to write  
+```ts  
+warn(...args: any[]): void;
+``` 
 
 ### error
-* `message` The message to write  
+* `args` The message to write  
+```ts  
+error(...args: any[]): void;
+``` 
 
 ### disable 
 disable write to terminal and file for unit testing  

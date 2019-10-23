@@ -1,4 +1,5 @@
 // Type definitions
+/// <reference types="node" />
 
 interface Options {
   dir?: string;
@@ -20,23 +21,23 @@ declare class Logger {
   /**
    * print info message 
    * 
-   *  `message` The message to write  
+   *  `args` The message to write  
    */
-  info(message: string): void;
+  info(...args: any[]): void;
 
   /**
    * print warn message 
    * 
-   *  `message` The message to write  
+   *  `args` The message to write  
    */
-  warn(message: string): void;
+  warn(...args: any[]): void;
 
   /**
    * print error message 
    * 
-   *  `message` The message to write  
+   *  `args` The message to write  
    */
-  error(message: string): void;
+  error(...args: any[]): void;
 
   /**
    * disable write to terminal and file for unit testing
