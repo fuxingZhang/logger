@@ -7,6 +7,6 @@ const logger = new Logger({
   rotate: true
 });
 
-logger.info('fileLogger info');
-logger.warn('fileLogger warn');
-logger.error('fileLogger error');
+logger.info('fileLogger info', 'any', { name: 'zfx' });
+logger.warn('fileLogger warn', 'any', 'any');
+logger.error('fileLogger error', 'any', new Error('test'), 'any');
