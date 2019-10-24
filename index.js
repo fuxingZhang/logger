@@ -123,7 +123,7 @@ class Logger {
 
   static format(args) {
     args = args.map(arg => {
-      if(arg instanceof Error) return arg.message;
+      if(arg instanceof Error) return arg.stack;
       if(Object.prototype.toString.call(arg) === '[object Object]') return JSON.stringify(arg, null, 2);
       return arg;
     });
