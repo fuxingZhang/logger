@@ -102,7 +102,7 @@ logger.warn('fileLogger warn', 'any', 'any');
 logger.error('fileLogger error', 'any', new Error('test'), 'any');
 ```  
 
-![byDay](./screenshots/fileLogger.roate.png)  
+![byDay](./screenshots/fileLogger.rotate.png)  
 
 More screenshots in the `screenshots` folder.
 
