@@ -115,7 +115,7 @@ class Logger {
    * @public
    */
   disable() {
-    stdout = noop; // close console in init
+    stdout = noop;
     this.info = noop;
     this.warn = noop;
     this.error = noop;
