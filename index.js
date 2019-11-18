@@ -4,6 +4,7 @@ const fs = require('fs');
 const colors = require('@zhangfuxing/colors/fn');
 const path = require('path');
 const write = require('./write');
+const date = require('./date');
 let stdout = require('./stdout');
 const eol = require('os').EOL;
 const noop = () => void 0;
@@ -144,11 +145,11 @@ class Logger {
   }
 
   static getNow() {
-    return new Date().toLocaleString('zh', { hour12: false });
+    return date.toLocaleString();
   }
 
   static getDate() {
-    return new Date().toLocaleDateString();
+    return date.toLocaleDateString();
   }
 }
 
