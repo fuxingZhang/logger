@@ -1,5 +1,4 @@
 // Type definitions
-/// <reference types="node" />
 
 interface Options {
   dir?: string;
