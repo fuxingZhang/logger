@@ -1,6 +1,6 @@
 {
   "name": "@zhangfuxing/logger",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "description": "logger for nodejs",
   "main": "index.js",
   "directories": {
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/fuxingZhang/logger#readme",
   "dependencies": {
-    "@zhangfuxing/colors": "^1.2.1"
+    "@zhangfuxing/colors": "^1.2.1",
+    "@zhangfuxing/date": "^0.8.3"
   }
 }
