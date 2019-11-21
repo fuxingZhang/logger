@@ -25,6 +25,6 @@
   "homepage": "https://github.com/fuxingZhang/logger#readme",
   "dependencies": {
     "@zhangfuxing/colors": "^1.2.1",
-    "@zhangfuxing/date": "^0.9.0"
+    "@zhangfuxing/date": "^0.9.1"
   }
 }
