@@ -1,6 +1,6 @@
 {
   "name": "@zhangfuxing/logger",
-  "version": "2.3.2",
+  "version": "2.3.3",
   "description": "logger for nodejs",
   "main": "index.js",
   "directories": {
