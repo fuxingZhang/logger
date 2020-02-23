@@ -1,6 +1,7 @@
 'use strict'
 
 const fs = require('fs');
+const util = require('util');
 const colors = require('@zhangfuxing/colors/fn');
 const path = require('path');
 const write = require('./write');
@@ -70,13 +71,13 @@ class Logger {
    * @param {...*} args 
    */
   info(...args) {
-    const message = Logger.format(args);
+    const message = util.formatWithOptions({ colors: true }, ...args);
     this.#stdout(`${Logger.getInfo()} ${message}`);
 
     if (this.#dir !== undefined) Logger.write({
       dir: this.#dir,
       type: 'info',
-      message,
+      message: util.format(...args),
       rotate: this.#rotate
     });
   }
@@ -87,13 +88,13 @@ class Logger {
    * @param {...*} args 
    */
   warn(...args) {
-    const message = Logger.format(args);
+    const message = util.formatWithOptions({ colors: true }, ...args);
     this.#stdout(`${Logger.getWarn()} ${message}`);
 
     if (this.#dir !== undefined) Logger.write({
       dir: this.#dir,
       type: 'warn',
-      message,
+      message: util.format(...args),
       rotate: this.#rotate
     });
   }
@@ -104,13 +105,13 @@ class Logger {
    * @param {...*} args 
    */
   error(...args) {
-    const message = Logger.format(args);
+    const message = util.formatWithOptions({ colors: true }, ...args);
     this.#stdout(`${Logger.getError()} ${message}`);
 
     if (this.#dir !== undefined) Logger.write({
       dir: this.#dir,
       type: 'error',
-      message,
+      message: util.format(...args),
       rotate: this.#rotate
     });
   }
@@ -181,16 +182,6 @@ class Logger {
    */
   enableFile() {
     Logger.write = this.#write;
-  }
-
-  static format(args) {
-    args = args.map(arg => {
-      if (arg instanceof Error) return arg.stack;
-      if (Object.prototype.toString.call(arg) === '[object Object]') return JSON.stringify(arg, null, 2);
-      return arg;
-    });
-
-    return args.join(' ');
   }
 
   static getInfo() {
