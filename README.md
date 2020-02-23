@@ -40,25 +40,25 @@ error(...args: any[]): void;
 ### disableConsole 
 disable write to terminal
 ```ts  
-disable(): void;
+disableConsole(): void;
 ``` 
 
 ### enableConsole 
 enable write to terminal
 ```ts  
-disable(): void;
+enableConsole(): void;
 ``` 
 
 ### disableFile 
 disable write to file
 ```ts  
-disable(): void;
+disableFile(): void;
 ``` 
 
 ### enableFile 
 enable write to file
 ```ts  
-disable(): void;
+enableFile(): void;
 ``` 
 
 ### disable 
