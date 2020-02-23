@@ -130,8 +130,6 @@ logger.warn('fileLogger warn', 'any', 'any');
 logger.error('fileLogger error', 'any', new Error('test'), 'any');
 ```  
 
-More screenshots in the `screenshots` folder.
-
 ## disableConsole and enableConsole
 ```js
 const Logger = require('@zhangfuxing/logger');
@@ -229,11 +227,13 @@ More test file in the `test` folder.
 
 ## Screenshots
 
-consoleLogger
+consoleLogger  
 ![consoleLogger](./screenshots/consoleLogger.png)  
 
-fileLogger
+fileLogger  
 ![fileLogger](./screenshots/fileLogger.png) 
 
-cut logs by day
+cut logs by day  
 ![CutByDay](./screenshots/fileLogger.rotate.png)  
+
+More screenshots in the `screenshots` folder.
