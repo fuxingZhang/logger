@@ -39,9 +39,34 @@ declare class Logger {
   error(...args: any[]): void;
 
   /**
-   * disable write to terminal and file for unit testing
+   * disable current log (file and console)
    */
   disable(): void;
+
+  /**
+   * restore previous log configuration (file, console or both)
+   */
+  enable(): void;
+
+  /**
+   * disable write to terminal
+   */
+  disableConsole(): void;
+
+  /**
+   * enable write to terminal
+   */
+  enableConsole(): void;
+
+  /**
+   * disable write to file
+   */
+  disableFile(): void;
+
+  /**
+   * enable write to file
+   */
+  enableFile(): void;
 }
 
 export = Logger
