@@ -87,8 +87,6 @@ logger.warn('consoleLogger warn', 1, 'any');
 logger.error('consoleLogger error', new Error('test'));
 ```  
 
-![consoleLogger](./screenshots/consoleLogger.png)  
-
 ### file and console logger  
 
 ```js
@@ -102,8 +100,6 @@ logger.info('fileLogger info', 'any', { name: 'zfx' });
 logger.warn('fileLogger warn', 'any', 'any');
 logger.error('fileLogger error', 'any', new Error('test'), 'any');
 ```  
-
-![fileLogger](./screenshots/fileLogger.png) 
 
 ### file logger only
 
@@ -133,8 +129,6 @@ logger.info('fileLogger info', 'any', { name: 'zfx' });
 logger.warn('fileLogger warn', 'any', 'any');
 logger.error('fileLogger error', 'any', new Error('test'), 'any');
 ```  
-
-![byDay](./screenshots/fileLogger.rotate.png)  
 
 More screenshots in the `screenshots` folder.
 
@@ -232,3 +226,14 @@ $ npm test
 ```  
 
 More test file in the `test` folder.
+
+## Screenshots
+
+consoleLogger
+![consoleLogger](./screenshots/consoleLogger.png)  
+
+fileLogger
+![fileLogger](./screenshots/fileLogger.png) 
+
+cut logs by day
+![CutByDay](./screenshots/fileLogger.rotate.png)  
