@@ -3,7 +3,8 @@
 const Logger = require('../index');
 
 const logger = new Logger({
-  dir: './log'
+  dir: './log',
+  disableConsole: true
 });
 
 logger.info('fileLogger info', 'any', { name: 'zfx' });
