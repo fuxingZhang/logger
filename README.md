@@ -37,9 +37,42 @@ warn(...args: any[]): void;
 error(...args: any[]): void;
 ``` 
 
+### disableConsole 
+disable write to terminal
+```ts  
+disable(): void;
+``` 
+
+### enableConsole 
+enable write to terminal
+```ts  
+disable(): void;
+``` 
+
+### disableFile 
+disable write to file
+```ts  
+disable(): void;
+``` 
+
+### enableFile 
+enable write to file
+```ts  
+disable(): void;
+``` 
+
 ### disable 
-disable write to terminal and file for unit testing  
- 
+disable write to file and terminal, don't care if it is currently writing to a file or terminal, but hope to restore the currently configuration later
+```ts  
+disable(): void;
+``` 
+
+### enable 
+restore previous log configuration: file, terminal or both
+```ts  
+enable(): void;
+``` 
+
 ## Useage  
 
 ### console logger  
@@ -88,7 +121,6 @@ logger.error('fileLogger error', 'any', new Error('test'), 'any');
 ```  
 
 ### file logger cut by day
-
 ```js
 const Logger = require('@zhangfuxing/logger');
 
@@ -106,36 +138,91 @@ logger.error('fileLogger error', 'any', new Error('test'), 'any');
 
 More screenshots in the `screenshots` folder.
 
-## disable for unit testing  
-disable write to terminal and file for unit testing 
-
-consoleLogger.js
+## disableConsole and enableConsole
 ```js
 const Logger = require('@zhangfuxing/logger');
 
 const logger = new Logger();
 
-module.exports = logger
+logger.info('console enabled, you can see me');
+logger.info('console will be disabled, should not see "console disabled" below ===>');
+logger.disableConsole();
+logger.info('console disabled');
+logger.enableConsole();
+logger.info('console enabled, you can see me');
 ```
 
-fileLogger.js
+or disableConsole is true when the logger is instantiated
+
 ```js
 const Logger = require('@zhangfuxing/logger');
 
 const logger = new Logger({
+  disableConsole: true
+});
+
+logger.enableConsole();
+logger.info('console enabled, you can see me');
+logger.info('console will be disabled, should not see any below ===>');
+logger.disableConsole();
+logger.info('console disabled');
+``` 
+
+## disableFile and enableFile
+```js
+const Logger = require('@zhangfuxing/logger');
+
+const logger = new Logger({
+  dir: './log',
+  disableConsole: true
+});
+
+logger.info('file enable');
+logger.info('console will be disabled, should not see "file disbaled" below ===>');
+logger.disableFile();
+logger.info('file disbaled');
+logger.enableFile();
+logger.info('file enabled, you can see me');
+```
+
+## disable and enable
+
+1. fileLogger => disable => enable => fileLogger 
+2. consoleLogger => disable => enable => consoleLogger 
+3. fileLogger, consoleLogger => disable => enable => fileLogger, consoleLogger 
+
+```js
+const Logger = require('@zhangfuxing/logger');
+
+const consoleLogger = new Logger();
+const fileLogger = new Logger({
+  dir: './log',
+  disableConsole: true
+});
+const bothLogger = new Logger({
   dir: './log'
 });
 
-module.exports = logger
-```
-
-xx.test.js
-```js
-const consoleLogger= require('xx/consoleLogger');
-const fileLogger= require('xx/fileLogger');
-
-consoleLogger.disable();
+// fileLogger => disable => enable => fileLogger 
+fileLogger.info('print by fileLogger, should not see "fileLogger disabled"');
 fileLogger.disable();
+fileLogger.info('fileLogger disabled');
+fileLogger.enable();
+fileLogger.info('fileLogger enabled, should see me just in file');
+
+// consoleLogger => disable => enable => consoleLogger 
+consoleLogger.info('print by consoleLogger, should not see "consoleLogger disabled"');
+consoleLogger.disable();
+consoleLogger.info('consoleLogger disabled');
+consoleLogger.enable();
+consoleLogger.info('consoleLogger enabled, should see me just in terminal');
+
+// fileLogger, consoleLogger => disable => enable => fileLogger, consoleLogger 
+bothLogger.info('print by bothLogger, should not see "bothLogger disabled"');
+bothLogger.disable();
+bothLogger.info('bothLogger disabled');
+bothLogger.enable();
+bothLogger.info('bothLogger enabled, should see me both in file and terminal');
 ```
 
 ## Test
