@@ -1,6 +1,6 @@
 {
   "name": "@zhangfuxing/logger",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "description": "logger for nodejs",
   "main": "index.js",
   "directories": {
@@ -17,7 +17,10 @@
     "nodejs",
     "logger"
   ],
-  "author": "Zhang Fu Xing <502545703@qq.com>",
+  "author": {
+    "name": "Zhang Fu Xing",
+    "email": "502545703@qq.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/fuxingZhang/logger/issues"
