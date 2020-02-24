@@ -8,7 +8,7 @@ const logger = new Logger({
 });
 
 logger.info('file enable');
-logger.info('console will be disabled, should not see "file disbaled" below ===>');
+logger.info('file will be disabled, should not see "file disbaled" below ===>');
 logger.disableFile();
 logger.info('file disbaled');
 logger.enableFile();
