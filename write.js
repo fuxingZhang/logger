@@ -13,13 +13,22 @@ function write(path, chunk) {
   if (map.has(path)) return map.get(path).write(chunk);
 
   if (path.includes('info')) {
-    if (infoPath) map.get(infoPath).end();
+    if (infoPath) {
+      map.get(infoPath).end();
+      map.delete(infoPath);
+    }
     infoPath = path;
   } else if (path.includes('warn')) {
-    if (warnPath) map.get(warnPath).end();
+    if (warnPath) {
+      map.get(warnPath).end();
+      map.delete(warnPath);
+    }
     warnPath = path;
   } else if (path.includes('error')) {
-    if (errorPath) map.get(errorPath).end();
+    if (errorPath) {
+      map.get(errorPath).end();
+      map.delete(errorPath);
+    }
     errorPath = path;
   } else {
     throw new Error('Unexpected file path');
