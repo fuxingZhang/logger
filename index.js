@@ -9,6 +9,7 @@ const Dater = require('@zhangfuxing/date');
 const stdout = require('./stdout');
 const eol = require('os').EOL;
 const noop = () => void 0;
+const { INFO, WARN, ERROR } = require('./types');
 
 class Logger {
   #stdout;
@@ -76,7 +77,7 @@ class Logger {
 
     if (this.#dir !== undefined) Logger.write({
       dir: this.#dir,
-      type: 'info',
+      type: INFO,
       message: util.format(...args),
       rotate: this.#rotate
     });
@@ -93,7 +94,7 @@ class Logger {
 
     if (this.#dir !== undefined) Logger.write({
       dir: this.#dir,
-      type: 'warn',
+      type: WARN,
       message: util.format(...args),
       rotate: this.#rotate
     });
@@ -110,7 +111,7 @@ class Logger {
 
     if (this.#dir !== undefined) Logger.write({
       dir: this.#dir,
-      type: 'error',
+      type: ERROR,
       message: util.format(...args),
       rotate: this.#rotate
     });
@@ -129,7 +130,7 @@ class Logger {
     const path = `${dir}/${filename}.log`;
     const chunk = `${Logger.getNow()} ${message}${eol}`;
 
-    write(path, chunk);
+    write(path, chunk, type);
   }
 
   /**
